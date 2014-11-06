@@ -23,7 +23,7 @@ Now it turns to green (good to submit)
 git commit #filename
 ```
 Write some comments on the first line
-click esc :wq to save the comments
+#click esc :wq to save the comments
 Push your request
 ```bash
 git push
