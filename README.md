@@ -2,6 +2,6 @@ JumbaStar
 =========
 ## Installation
 cd to the repo
-'''bash
+```bash
 git clone #ssh from the repository
-'''
+```
