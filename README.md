@@ -14,7 +14,7 @@ Add the file you want to go to master branch
 ```bash
 git add #filename
 ```
-chech status
+Check status
 ```bash
 git status
 ```
