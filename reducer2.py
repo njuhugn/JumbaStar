@@ -17,5 +17,5 @@ for line in sys.stdin:
     else:
         print '%s\t%s\t%s\t%s' % (feature, "ad", items[2], items[3])
 
-print '%s\t%s\t%s\t%s' % ("impression<=10", "ad", sep_impression, sep_click)
+print '%s\t%s\t%s\t%s' % ("impression<=20", "ad", sep_impression, sep_click)
 
