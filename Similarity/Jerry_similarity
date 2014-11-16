@@ -1,0 +1,195 @@
+def get_tokens(id_val, filename):
+    """ Given (ID, filename), return the list of tokens associated with it"""
+    id_token_list = [line.strip() for line in open(filename)]
+    output = [] # create an initial output list
+    for line in id_token_list:
+        line = line.replace('|', '\t').split('\t')
+        # for each line in the file,first replace '|' by TAB
+        # then seperate them by TAB
+        if line[0] == id_val:
+            #if id matches, grab the tokens
+            output = line[1:]
+    """====================================================================
+    Hint:
+    To create a list of tokens, use string.split
+    ========================================================================"""
+    return output
+
+"""
+==========================================================================
+Question 2:                                                     (2 points)
+Task:
+    Given an ad ID, find the combined list of all tokes in its
+    keyword, title and description.
+Input:
+    1. Ad ID - string
+Output:
+    A list of all the token IDs."""
+
+def get_all_ad_tokens(ad_id):
+    """Given an ad ID, find the combined list of all tokes in its
+    keyword, title and description"""
+    instance_list = [line.strip() for line in open("instances.txt")]
+    for line in instance_list:
+        line = line.split('\t')
+        if line[3] == ad_id:
+            ids = [line[i] for i in (8, 9, 10)]
+            #grab keywordID, titleID and description ID for
+            #the sepcific instance
+    output = get_tokens(ids[0], 'purchasedkeywordid_tokensid.txt')+\
+             get_tokens(ids[1], 'titleid_tokensid.txt')+\
+             get_tokens(ids[2], 'descriptionid_tokensid.txt')
+            # use the previous function to get token according to different
+            # id and combine all the tokens.
+    """================================================================
+    Hint:
+    Get the properties of the ad from the above instance_list.
+    Look up the other files to get tokens of keyword, title, description.
+    ==================================================================="""
+    return output
+
+"""
+==========================================================================
+Question 3:                                                     (3 points)
+The similarity between a query and an advertisement is measured as the
+similarity of keywords between the query and the keyword, title and description.
+    SimilarityIndex:
+ sum of (num of tokens in the query that are also in keyword,title,description
+    / num of tokens in the query).
+
+    Note: If a query has more than one token, SimilarityIndex is the sum of the
+indices calculated for each token in the query.
+
+Task:
+    Given a (query, adID) find the SimilarityIndex.
+Input:
+    1. query id - string
+    2. Ad ID - string
+Output:
+    SimilarityIndex calculated by the above formula - float"""
+
+def get_similarity_index(query_id, ad_id):
+    """Given a query_id, adID find the SimilarityIndex
+    """
+    ads = get_all_ad_tokens(ad_id)# first get all the tokens for the ad_id
+    query = get_tokens(query_id, 'queryid_tokensid.txt')# all tokens from query
+    length = float(len(query))# calculate the number of tokens in the query
+    count = 0 # set initial count to be zero
+    for token in query: # add 1 to count if token is in the ad
+        if token in ads:
+            count = count+1
+    output = float(count/length) # calculate the total similarity
+    return output
+"""
+==========================================================================
+Question 4:                                                     (2 points)
+A 2-token phrase is any two consecutive tokens for an ID.
+Get all the 2-token phrases for the given ID.
+
+Task:
+    Given a (ID, filename) find all 2-token phrases.
+Input:
+    1. ID - string
+    2. filename - string
+Output:
+    A list of 2 token phrases - list"""
+
+def get_2_token_phrases(id_val, filename):
+    """Given a (ID, filename) find all 2-token phrases"""
+    output = [] # create an initial output list
+    token = get_tokens(id_val, filename) # get the tokens for the id
+    for token1, token2 in zip(token, token[1:]): # zip the token list and
+        phrasetoken = []      # itself but with first element removed.
+        phrasetoken.append(token1) # then we will have a list of every two
+        phrasetoken.append(token2) # consecutive element in the token list.
+        output.append(phrasetoken)
+    return output
+
+"""
+==========================================================================
+Question 5:                                                     (2 points)
+SimilarityIndex2 follows the same formula as Q3. But here,instead of calculating
+the index for every single token and adding them, you pick 2-token phrases from
+the query and find their similarity with 2-token phrases in keyword, title,
+description of the ad.
+
+SimilarityIndex2 = sum of(num of 2-token phrase in a query that are also in
+    keyword, title, description/ num of 2-token phrases in the query)
+
+Task:
+    Given a (query, adID) find the SimilarityIndex2.
+Input:
+    1. query id - string
+    2. Ad ID - string
+Output:
+    SimilarityIndex2 calculated by the above formula - float"""
+
+def get_similarity_index_2(query_id, ad_id):
+    """Given a query_id, adID find the SimilarityIndex"""
+    # get 2-phrase-token for each file
+    key2token = get_2_token_phrases(ad_id, 'purchasedkeywordid_tokensid.txt')
+    title2token = get_2_token_phrases(ad_id, 'titleid_tokensid.txt')
+    decrip2token = get_2_token_phrases(ad_id, 'descriptionid_tokensid.txt')
+    query2token = get_2_token_phrases(query_id, 'queryid_tokensid.txt')
+    count = 0
+    length = float(len(query2token))
+    for token in query2token: #check if each 2-phrase token in query is
+        if token in key2token: #in title, keyword and description
+            count = count+1    #respectively
+        elif token in title2token:
+            count = count+1
+        elif token in decrip2token:
+            count = count+1
+    return float(count/length) #output the total similarity
+
+def test(got, expected):
+    """ Test function to display test cases"""
+    if got == expected:
+        prefix = ' OK '
+    else:
+        prefix = '  X '
+    print '%s got: %s expected: %s' % (prefix, repr(got), repr(expected))
+
+    # Calls the above functions with interesting inputs.
+
+def main():
+    print '\n\nGet all ad tokens\n\n'
+    test(get_all_ad_tokens('21162422'), ['10772', '327', '6', '45', '572',\
+    '2', '10772', '327', '6', '334', '34', '271', '209', '158', '3', '271',\
+    '209', '158', '958', '381', '2282', '3610', '2773', '1781', '1', '173',\
+    '597', '274', '2', '10772', '327', '6', '1056', '28', '29', '665',\
+    '191', '3'])
+    test(get_all_ad_tokens('4418786'), ['6410', '971', '37', '1270', '1',\
+    '69', '6410', '971', '466', '582', '1', '1159', '6410', '971', '1',\
+    '1192', '5010', '1', '329', '146', '1', '414', '89', '720', '4958',\
+    '330', '7590', '3'])
+    
+   """ Calls the test function"""
+    print '\n\nGet list of tokens for an id\n\n'
+    test(get_tokens('165', 'queryid_tokensid.txt'),\
+            ['13521', '12266', '91658', '3835'])
+    test(get_tokens('62', 'queryid_tokensid.txt'), ['310'])
+    test(get_tokens('33', 'purchasedkeywordid_tokensid.txt'), ['45', '31'])
+    test(get_tokens('29', 'titleid_tokensid.txt'),\
+            ['45', '31', '571', '1916', '38'])
+
+   print '\n\nGet Similarity Index\n\n'
+    test(get_similarity_index('97', '21822275'), 0.5)
+    test(get_similarity_index('1000', '20395615'), 0.0)
+
+    print '\n\nGet Two phrased tokens\n\n'
+    test(get_2_token_phrases('27', "queryid_tokensid.txt"),\
+        [['25', '20'], ['20', '18'], ['18', '4174'], ['4174', '4469']])
+    test(get_2_token_phrases('21', "titleid_tokensid.txt"), [['824', '1963'],\
+    ['1963', '3'], ['3', '0'], ['0', '616'], ['616', '50'], ['50', '605'],\
+    ['605', '334'], ['334', '34'], ['34', '582']])
+    test(get_2_token_phrases('78', "purchasedkeywordid_tokensid.txt"), [])
+
+
+    print '\n\nGet Similarity Index2\n\n'
+    test(get_similarity_index_2('97', '21822275'), 0.0)
+
+
+    
+if __name__ == "__main__":
+    main()
