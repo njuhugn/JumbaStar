@@ -6,4 +6,4 @@ for line in sys.stdin:
     items = line.split('\t')
     print '%s\t%s\t%s\t%s' % (items[0], items[1], items[2], items[3])
 
-### By Jiajun Chen 
+
