@@ -24,4 +24,4 @@ for line in sys.stdin:
         impression = int(items[2])
             
 print '%s\t%s\t%s\t%s' % (current_name, current_value, impression, click)
-### By Jiajun Chen
+
