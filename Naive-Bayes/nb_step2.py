@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#Author: Victor Jiang
+#Author: Victor Jiang & Jiajun chen
 
 import sys
 import os.path
