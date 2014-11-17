@@ -16,4 +16,4 @@ for line in sys.stdin:
             print '%s\t%s\t%s\t%s' % ("position", position, impression, click)
     except Exception:
         continue
-### By Jiajun Chen 
+### By Jiajun Chen
