@@ -56,5 +56,3 @@ for line in sys.stdin:
 
 
 print '%s\t%s\t%s\t%s' % (current_name, "UNK", sep_impression, sep_click)
-
-### By Jiajun Chen 
