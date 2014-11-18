@@ -12,12 +12,12 @@ summary(fit) # detailed summary of splits
 plot(fit, uniform=TRUE)
 text(fit, use.n=TRUE, all=TRUE, cex=.6)
 post(fit, file = "~/Desktop/tree.ps", 
-     title = "Classification Tree for Kyphosis")
+     title = "Classification Tree")
 
 #### party
 ############# use library party
 library(party)
-str(iris)
+str(iris) # example data
 str(output)
 myFormula <- response ~ imp + ctr
 output_ctree <- ctree(myFormula, data=output)
