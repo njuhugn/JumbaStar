@@ -1,6 +1,8 @@
 #!/usr/bin/python
-# author: Sida Ye
 import sys
+
+# author: Sida Ye, Jiajun Chen
+
 """
         1.
         2.
@@ -26,11 +28,11 @@ Output format: query_id /t instance /t title_id_token
 for line in sys.stdin:
     line = line.strip()
     items = line.split('\t')
-    if len(items[0]) >= 3:
-        for item in items:
-           query_id = item[9]
+    first_item = items[0].split(',')
+    if len(first_item) >= 3:
+        query_id = int(first_item[9].replace("'", ""))
         print '%s\t%s\t%s' % (query_id, items[0], items[1])
     else:
-        query_id = items[0]
+        query_id = int(items[0])
         tokens = items[1]
         print '%s\t%s\t%s' % (query_id, tokens, 'token')
