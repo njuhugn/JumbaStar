@@ -1,5 +1,7 @@
 #!/usr/bin/python
-#author: Sida Ye
+
+# author: Sida Ye
+
 import sys
 
 token = None
