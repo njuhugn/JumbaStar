@@ -1,4 +1,4 @@
-Author: Victor Jiang
+#Author: Victor Jiang
 
 
 install.packages('AUC')
