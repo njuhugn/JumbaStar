@@ -5,7 +5,7 @@ train <- part # change data name
 variables <- c("ad_id", "position", "depth", "impressions","clicks")
 names(train) <- variables
 train$no_clicks <- with(train, impressions - clicks)
-train[,2:6]<-lapply(1:6,function(x) as.numeric(train[,x])) # change data format
+train[,2:6]<-lapply(2:6,function(x) as.numeric(train[,x])) # change data format
 
 # the input is dataframe with a column impressions
 reduceFactorLevels <- function(data, var, n=1024) {
