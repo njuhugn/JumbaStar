@@ -1,5 +1,11 @@
 #!/usr/bin/python
 # author: Sida Ye, Jiajun Chen
+"""
+Input format: titleID /t instance
+            titleID /t token
+
+Output format: instance /t titleID_token
+"""
 import sys
 
 token = None
