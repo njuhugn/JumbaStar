@@ -33,3 +33,5 @@ def find_probability(train):
                                       float(items[3]))
 find_probability('vali.txt')
 
+
+
