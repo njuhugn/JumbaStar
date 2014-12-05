@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 #Authro:Victor Jiang
 
+#2_nb_step2.py: use the sample_prob.txt to apply naive bayes model to get P(click|feature=value) for the validation set
+#input:  '0.0822'\t 'train'\t '0'\t '1'\t '11092342671025131053'\t '20883284'\t '26561'\t '2'\t '1'\t '11929585'\t '65174'\t '1000019'\t '505595' \t '0'	\t additional feature
+#output:  featurename \t adid \t value \t  P(click | feature=value) \t click \t impression
+
 
 import sys
 import os.path
