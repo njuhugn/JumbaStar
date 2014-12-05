@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# author: Jiajun Chen
 # this reducer aggregate all the instances with impression <= 20 and leave
 # other instance unchanged
 
