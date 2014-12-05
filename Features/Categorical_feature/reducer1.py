@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# this reducer return each unqiue feature \t sum of impression \t sum of click
 import sys
 
 current_value = None
