@@ -1,16 +1,16 @@
-Instructions \n
-Relative position feature
+Instructions: Relative Position Feature
 =========
-## MapJoin One
-* First, combine original instance data file and titleID_token file together as the input for first mapjoin work.
+## Calculate relative position
+* First, use output from Mapjoin file in the second mapjoin in similarity calcuation process. 
 
-* Second, create a cluster which takes the titleID_mapper.py as mapper and titleID_reducer.py as redcuer.
+* Input format is instance /t titleID_token /t queryID_token
 
-* The output file's format is instance /t titleID_token
+* Second, create a cluster which takes the relative_pos_mapper.py as mapper
 
-## MapJoin Two
-* First, combine the output of Mapjoin One and queryID_token file together as the input for the second mapjoin work.
+* The reducer is the "identify reducer", you can used 
+```
+org.apache.hadoop.mapred.lib.IdentityReducer
+```
 
-* Second, create a cluster which takes the queryID_mapper.py as mapper and queryID_reducer.py as reducer.
+* The output file's format is instance /t titleID_token /t queryID_token /t relative_pos
 
-* The output file's format is instance /t titleID_token /t queryID_token
