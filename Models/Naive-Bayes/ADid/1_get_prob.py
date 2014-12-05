@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+#Author:Victor Jiang
+
 
 import sys
 import os.path
