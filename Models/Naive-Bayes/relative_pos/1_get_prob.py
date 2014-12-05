@@ -1,6 +1,10 @@
 #Author:Victor Jiang
 
 
+#1_get_prob.py: concert the training data into sample_prob.txt
+#input:  value \t featurename \t  click \t impression
+#output:  featurename \t value \t  P(feature=value|click) \t P(feature=value|nonclick)
+
 def find_probability(train):
     click = 0
     impression = 0
