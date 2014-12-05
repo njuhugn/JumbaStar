@@ -4,15 +4,18 @@
 """
 Input data frame format: ad_id, position, depth, impression, clicks, non-clicks
 Then we are trying to run a logistic regression on this dataframe.
-
 """
 
 
-train <- part # change data name
+train  <- read.delim("/Volumes/JERRY/part.txt", header=FALSE)
+validation <- read.delim("/Volumes/JERRY/validation_input.txt", header=FALSE)
 variables <- c("ad_id", "position", "depth", "impressions","clicks")
 names(train) <- variables # name valriables
+names(validation) <- variables
 train$no_clicks <- with(train, impressions - clicks) # calculate non-click
+validation$no_clicks <- with(validation, impressions - clicks)
 train[,2:6]<-lapply(2:6,function(x) as.numeric(train[,x])) # change data format
+validation[,2:6]<-lapply(2:6,function(x) as.numeric(validation[,x])) 
 train = train[train$impressions<100,] # choose the threfold to reduce train data
 
 # the input is dataframe with a column impressions
@@ -36,32 +39,12 @@ matchFactorLevels <- function(data, data_to_match, var) {
 }
 
 train$ad_id <- reduceFactorLevels(train, "ad_id", 50) # change the number of level
-      
-      
-#### GLM
+
 library(stats)
-# run logistic regression
 model.glm <- glm(cbind(clicks, no_clicks) ~ ad_id + position + depth, family = binomial, data = train)
 
 
-
-####################
-#### GLM
-library(stats)
-model.glm <- glm(cbind(clicks, no_clicks) ~ ad_id + advertiser_id + position,
-                 family = binomial, data = train)
-
-model.glm <- glm(cbind(click, no_clicks) ~ AdID + Pos + Depth + impressions, family = binomial, data = train)
-
-validation <- read.table("validation-bs1.tsb", header=FALSE, colClasses=colClasses)
-names(validation) <- variables
-
 validation$ad_id <- matchFactorLevels(validation, train, "ad_id")
-validation$advertiser_id <- matchFactorLevels(validation, train, "advertiser_id")
-
 validation$prob <- predict(model.glm, newdata=validation, type="response")
-
-#got this
-#prediction from a rank-deficient fit may be misleading
 
 write.csv(validation, "validation_results.csv", quote=FALSE)
