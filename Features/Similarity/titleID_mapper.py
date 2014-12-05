@@ -16,6 +16,12 @@ import sys
         12. TitleID
         13. DescriptionID
         14. UserID
+Input format: instance
+              titleID /t token
+              
+Output format: titleID /t instance
+                titleID /t token
+
 """
 for line in sys.stdin:
     line = line.strip()
