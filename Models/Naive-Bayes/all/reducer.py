@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #Author: Victor Jiang
 
+#reducer.py:aggregate the values with the same key
+#input: value \t featurename \t click \t impression
+#output:  value \t featurename \t  click \t impression
 
 import sys
 from operator import itemgetter
