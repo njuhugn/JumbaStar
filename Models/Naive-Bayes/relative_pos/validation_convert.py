@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 #Author:Victor Jiang
 
+#validation.py: concert validation set into the format I want
+#input:  ['0.0822', 'train', '0', '1', '11092342671025131053', '20883284', '26561', '2', '1', '11929585', '65174', '1000019', '505595', '0']	\t additional feature
+#output:  '0.0822'\t 'train'\t '0'\t '1'\t '11092342671025131053'\t '20883284'\t '26561'\t '2'\t '1'\t '11929585'\t '65174'\t '1000019'\t '505595' \t '0'	\t additional feature
+
+
 
 import sys
 import os.path
