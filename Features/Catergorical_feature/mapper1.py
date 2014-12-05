@@ -1,4 +1,7 @@
 #!/usr/bin/python
+# Author: Jiajun Chen 
+# this mapper extract the catergorical features: ad_id, depth and position and the click and impression
+# according to these features
 import sys
 for line in sys.stdin:
     line = line.strip()
