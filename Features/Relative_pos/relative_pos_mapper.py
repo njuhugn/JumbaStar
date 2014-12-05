@@ -18,6 +18,7 @@ import sys
         14. UserID
 
 Input format: instance(list) /t similarity_index
+Output format : instance /t similarity_index /t relative_pos
 
 """
 for line in sys.stdin:
