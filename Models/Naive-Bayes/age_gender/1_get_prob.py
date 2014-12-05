@@ -2,6 +2,10 @@
 #Author: Victor Jiang
 
 
+#1_get_prob.py: concert the training data into sample_prob.txt
+#input:  value \t featurename \t  click \t impression
+#output:  featurename \t value \t  P(feature=value|click) \t P(feature=value|nonclick)
+
 import sys
 import os.path
 sys.path.append(os.path.dirname(__file__))
