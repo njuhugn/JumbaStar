@@ -42,3 +42,26 @@ train$ad_id <- reduceFactorLevels(train, "ad_id", 50) # change the number of lev
 library(stats)
 # run logistic regression
 model.glm <- glm(cbind(clicks, no_clicks) ~ ad_id + position + depth, family = binomial, data = train)
+
+
+
+####################
+#### GLM
+library(stats)
+model.glm <- glm(cbind(clicks, no_clicks) ~ ad_id + advertiser_id + position,
+                 family = binomial, data = train)
+
+model.glm <- glm(cbind(click, no_clicks) ~ AdID + Pos + Depth + impressions, family = binomial, data = train)
+
+validation <- read.table("validation-bs1.tsb", header=FALSE, colClasses=colClasses)
+names(validation) <- variables
+
+validation$ad_id <- matchFactorLevels(validation, train, "ad_id")
+validation$advertiser_id <- matchFactorLevels(validation, train, "advertiser_id")
+
+validation$prob <- predict(model.glm, newdata=validation, type="response")
+
+#got this
+#prediction from a rank-deficient fit may be misleading
+
+write.csv(validation, "validation_results.csv", quote=FALSE)
