@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# author: Jiajun Chen
+# aggregate click and impression for unqiue combination of ad_id, position, depeth
 import sys
 
 current_id = None
