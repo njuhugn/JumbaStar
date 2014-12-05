@@ -1,5 +1,9 @@
 #Author:Victor Jiang
 
+#4_plot_roc.py: calculate the auc
+#input:  featurename \t adid \t value \t  P(click | feature=value) \t click \t impression
+#output: auc value
+
 print __doc__
 
 import numpy as np
