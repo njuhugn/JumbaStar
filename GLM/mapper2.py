@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# author: Jiajun Chen
 # identity mappery
 import sys
 for line in sys.stdin:
