@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #Author: Victor Jiang
 
+#3_expend.py: expand what I have for previous step so that each line only has one impression
+#input:  featurename \t adid \t value \t  P(click | feature=value) \t click \t impression
+#output:  featurename \t adid \t value \t  P(click | feature=value) \t click \t impression
 
 import sys
 import os.path
