@@ -1,5 +1,6 @@
 #!/usr/bin/python
-### create data frame for glm in R -- JiajunChen
+# author: Jiajun Chen
+# create data frame for glm in R, including ad_id, position, depth, click and impression
 import sys
 for line in sys.stdin:
     line = line.strip()
