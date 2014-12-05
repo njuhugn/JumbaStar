@@ -1,3 +1,5 @@
+#Author:Victor Jiang
+
 print __doc__
 
 import numpy as np
