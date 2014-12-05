@@ -26,7 +26,7 @@ matchFactorLevels <- function(data, data_to_match, var) {
   vec <- ifelse(vec %in% keep, vec, "other")
   as.factor(vec)
 }
-class(train[,2]
+class(train[,2])
 train$ad_id <- reduceFactorLevels(train, "ad_id", 10)
 
 
