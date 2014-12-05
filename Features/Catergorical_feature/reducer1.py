@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# author: Jiajun Chen
+# sum up click and impression for unique ad_id, depth and position
 import sys
 
 current_value = None
