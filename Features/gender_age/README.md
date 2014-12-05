@@ -9,7 +9,8 @@ Instructions to calculate age and gender feature
 *                                   userid \t instance
 *                                   userid \t age \t "age" \t gender \t "gender"
 
-## Step2- match the instance file with age and gender using userid
+## Step2
+*  this reducer match the instance file with age and gender using userid
 *  python file: reducer1.py
 *  Input file: output from above
 *  Output: output is in the format of 
