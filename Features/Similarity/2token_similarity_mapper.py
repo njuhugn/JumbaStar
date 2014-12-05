@@ -16,9 +16,9 @@ import sys
         12. TitleID
         13. DescriptionID
         14. UserID
-
+The code is going to calculate 2-token_similarity_index.
 Input format: instance(list) /t title_id_token/ query_id_token
-
+Output format: instance /t 2-token_similarity_index
 """
 for line in sys.stdin:
     line = line.strip()
