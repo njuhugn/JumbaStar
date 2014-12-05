@@ -1,11 +1,17 @@
-# author: Jiajun Chen
+# author: Jiajun Chen, Sida Ye
 # R code to run glm 
+
+"""
+Input data frame format: ad_id, position, depth, impression, clicks, non-clicks
+Then we are trying to run a logistic regression on this dataframe.
+
+"""
 
 
 train <- part # change data name
 variables <- c("ad_id", "position", "depth", "impressions","clicks")
-names(train) <- variables
-train$no_clicks <- with(train, impressions - clicks)
+names(train) <- variables # name valriables
+train$no_clicks <- with(train, impressions - clicks) # calculate non-click
 train[,2:6]<-lapply(2:6,function(x) as.numeric(train[,x])) # change data format
 train = train[train$impressions<100,] # choose the threfold to reduce train data
 
@@ -28,10 +34,11 @@ matchFactorLevels <- function(data, data_to_match, var) {
   vec <- ifelse(vec %in% keep, vec, "other")
   as.factor(vec)
 }
-class(train[,2])
+
 train$ad_id <- reduceFactorLevels(train, "ad_id", 50) # change the number of level
       
       
 #### GLM
 library(stats)
+# run logistic regression
 model.glm <- glm(cbind(clicks, no_clicks) ~ ad_id + position + depth, family = binomial, data = train)
