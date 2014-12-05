@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# this mapper returns feature value \t feature name \t impression \t click
 import sys
 for line in sys.stdin:
     line = line.strip()
