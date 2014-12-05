@@ -16,9 +16,9 @@ import sys
         12. TitleID
         13. DescriptionID
         14. UserID
-
+This code is going to calculate 1-token similarity.
 Input format: instance(list) /t title_id_token/ query_id_token
-
+Output format: instance /t 1-token_similarity_index
 """
 for line in sys.stdin:
     line = line.strip()
