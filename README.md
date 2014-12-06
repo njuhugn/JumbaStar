@@ -25,14 +25,12 @@
 --------
 
 ##	**Naive Bayes**
-*       **Description**
+###   **Description**
 *       Naive Bayes are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong independence assumptions between the features. 
 
-\subsubsection{Feature}
-\begin{enumerate}
-    \item Categorical feature: We used the categorical features adid, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique adid
+##  **Feature**
+Categorical feature: We used the categorical features adid, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique adid
 
-  \end{enumerate}%
 
 \begin{itemize}
   \item Categorical feature: \\
