@@ -17,18 +17,13 @@ Stat 157 - Final Report
 * Click-through-rate of advertisement is a major concern for almost all search engines, major websites as well as other internet companies. The accuracy of the prediction determines one company’s profit from advertisements and it directly affects the strategies for the companies to sell their available advertisements. 
 
 
-
-
-
-
 ## Description of Database
 * The data we used is from the KDD cup, held by Soso.com. To train our model, we used training-60.txt, which contained all the information for each instances and it was the main file we used in this project. We also used userid\_profile.txt, which contains the age and gender for each user ID. The last two files are queryid\_tokensid.txt and titleid\_tokensid, which had query ID, title ID and all the tokens ID. 
 
 
-
-
 ## Model
-\subsection{Naive Bayes}
+--------
+*	**Naive Bayes**
 \subsubsection{Description}
 Naive Bayes are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong independence assumptions between the features. 
 
