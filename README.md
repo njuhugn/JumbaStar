@@ -32,38 +32,32 @@
 * Categorical feature: We used the categorical features adid, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique adid
 
 
-* Categorical feature:
+* **Categorical feature:**
 * We used the categorical features ad_id, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique ad_id, position and depth. After that, we combined all the instances for each feature with less than 20 impressions and called them “UNK” to represent the feature not shown up yet. The input data for our Naive Bayes models can be found in S3://stat157-uq85def/home/chenjiajunjerry/final_project/data_aggregate2/output/out2
 
-* Similarity feature:
+* **Similarity feature:**
 * We calculated the similarity between queryID token and titleID token. First, we use mapjoin in AWS  to combine querID_token file, titleID_token file and train dataset file together, making it as a large file.
 The output is on S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/out8
 
-* **1-token similarity:**
+* 1-token similarity:
 * Based on the large file, we calculated the 1-token similarity by finding the same token in queryID_token file and titleID_token file. Then, we divided the number of same tokens by length of queryID_token.
 The output is on S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/out9
-* **2-token similarity:**
+* 2-token similarity:
 * Based on the large file, we calculated the 2-token similarity by finding the number of two consecutive same tokens in titleID’s token and queryID’s token. Then, we divided the number of 2-token by the length of queryID_token.
 The output is on S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/2tokenout
 
-* Gender and age:
+* **Gender and age:**
 * The UserID consists of age and gender groups. The age\_gender feature is the 12 different groups, from cross between 2 gender groups and 6 age groups. For different genders, the probability of whether to click on an advertisement is different, since males and females are likely to focus on different subjects when shopping, which is also obvious in the real world. Also the same rule applies to different age groups. We can categorize all users to different combinations of ages and genders. The output can be found on S3:
 stat157-uq85def/home/chenjiajunjerry/final_project/gender_age/outputs/out1
  
 
-* Relative position:
+* **Relative position:**
 * The relative position, which is $\frac{(depth - pos)} { depth}$., of the advertisements also can affect the CTR. As people usually pay attention on some easy detecting area of screen. If an ad is placed right in the middle and at the beginning, then it might attracts more people to click. We can value different positions to some number rank by their easiness to get access. The output is on S3: All Bucket/stat157-uq85def/home/clickpn/relative_pos/outputs/out1
 
 
 ### **Procedure**
 * For this model, we first find the probability of feature equals value given clicked or not clicked. Then we use bayes rule to find our target value: Pr(Click | Data) 
-The formula we used in this part is:\\
-
-\vspace*{-10pt}
-\textbf{Pr(click \textbar\   feature = value)} = $\frac{Pr(click \ \delta feature==value)}{Pr(feature = value | click)+Pr(feature = value | nonclick)}$ 
-\setlength{\parskip}{5 pt}
-\smallskip
-
+The formula we used in this part is: Pr(click | feature = value)} = $\frac{Pr(click \ \delta feature==value)}{Pr(feature = value | click)+Pr(feature = value | nonclick)}$ 
 On top of that, we also did additive smoothing to our sample probability. If the click through rate for one feature value is zero, we will use the following formula: to make adjustment:\\
 
 \vspace*{-8pt}
@@ -71,15 +65,14 @@ On top of that, we also did additive smoothing to our sample probability. If the
 \setlength{\parskip}{5 pt}
 \smallskip
 
-In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.\\ 
+* In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.\\ 
 
-\vspace*{-8pt}
-In the end, we went through each single feature and tried out the combinations of these features to get the highest auc.
-\vspace*{-10pt}
+* In the end, we went through each single feature and tried out the combinations of these features to get the highest auc.
 
 
-\subsubsection{Results/AUC}
-The training outcome(sample\_prob.txt) can be found at \url{s3://stat157-uq85def/home/jiangyuhao36/Submission}. And the detailed auc results(out.txt) can be found at \url{S3://stat157-uq85def/home/jiangyuhao36/Submission}. 
+
+### **Results/AUC**
+* The training outcome(sample\_prob.txt) can be found at \url{s3://stat157-uq85def/home/jiangyuhao36/Submission}. And the detailed auc results(out.txt) can be found at \url{S3://stat157-uq85def/home/jiangyuhao36/Submission}. 
 
 
 
