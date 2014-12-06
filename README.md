@@ -24,8 +24,8 @@ Stat 157 - Final Report
 ## Model
 --------
 *	**Naive Bayes**
-*   Description
-Naive Bayes are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong independence assumptions between the features. 
+*       **Description**
+*       Naive Bayes are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong independence assumptions between the features. 
 
 \subsubsection{Feature}
 \begin{enumerate}
