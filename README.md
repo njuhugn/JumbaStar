@@ -1,36 +1,11 @@
-JumbaStar
+Stat 157 - Final Report
 =========
+##
+Author: Sida Ye, Victor Jiang, Jiajun Chen, Jiabin Chen
+Date: 12/05/2014
 
-
-\documentclass[12pt]{article}
-
-\usepackage[top = 1 in, bottom = 1 in, left = 1 in,right = 1 in]{geometry}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{verbatim}
-\usepackage[hyphens]{url}
-\usepackage{enumerate}
-\usepackage{hyperref}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{10pt plus 6pt minus 4pt}
-\setlength{\parskip}{0pt}
-\linespread{1}
-\usepackage{mdwlist}
-
-
-
-\title{\LARGE \bf  Stat 157 - Progress Report}
-\author{ JumbaStar\\
-\\ Sida Ye, Victor Jiang, Jiajun Chen, Jiabin Chen}
-\setlength{\parskip}{0pt}
-
-\date{\small 12/5/2014}
-
-
-\begin{document}
-\maketitle
-\abstract{In this report, we report the process and the result we have for the KDD Cup 2012 click-through-rate (CTR) prediction of advertisements. To achieve that, we train our data in Naive Bayes, Generalized Linear Model and Gradient Boosting Model. We fitted each of the models with the best features that returned the highest prediction accuracies. For this report, we present the results through each individual model we used.
-}
+## abstract
+* In this report, we report the process and the result we have for the KDD Cup 2012 click-through-rate (CTR) prediction of advertisements. To achieve that, we train our data in Naive Bayes, Generalized Linear Model and Gradient Boosting Model. We fitted each of the models with the best features that returned the highest prediction accuracies. For this report, we present the results through each individual model we used.
 
 
 \section{Problem Statement}
