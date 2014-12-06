@@ -1,15 +1,15 @@
 Stat 157 - Final Report
 =========
 ##
-Author: Sida Ye, Victor Jiang, Jiajun Chen, Jiabin Chen
-Date: 12/05/2014
+* Author: Sida Ye, Victor Jiang, Jiajun Chen, Jiabin Chen
+* Date: 12/05/2014
 
-## abstract
+## Abstract
 * In this report, we report the process and the result we have for the KDD Cup 2012 click-through-rate (CTR) prediction of advertisements. To achieve that, we train our data in Naive Bayes, Generalized Linear Model and Gradient Boosting Model. We fitted each of the models with the best features that returned the highest prediction accuracies. For this report, we present the results through each individual model we used.
 
 
-\section{Problem Statement}
-The goal for this project was to predict click-through-rate and maximize the prediction accuracy. To achieve this goal, we aggregated various features and made different combinations of them. Then we applied three models -- Naive Bayes, GLM and Boosting on the training sets.
+## Problem Statement
+* The goal for this project was to predict click-through-rate and maximize the prediction accuracy. To achieve this goal, we aggregated various features and made different combinations of them. Then we applied three models -- Naive Bayes, GLM and Boosting on the training sets.
 
 
 
