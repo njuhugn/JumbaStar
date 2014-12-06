@@ -53,7 +53,7 @@ stat157-uq85def/home/chenjiajunjerry/final_project/gender_age/outputs/out1
  
 
 * **Relative position:**
-* The relative position, which is $\frac{(depth - pos)} { depth}$., of the advertisements also can affect the CTR. As people usually pay attention on some easy detecting area of screen. If an ad is placed right in the middle and at the beginning, then it might attracts more people to click. We can value different positions to some number rank by their easiness to get access. The output is on S3: All Bucket/stat157-uq85def/home/clickpn/relative_pos/outputs/out1
+* The relative position, which is (depth - pos)/depth, of the advertisements also can affect the CTR. As people usually pay attention on some easy detecting area of screen. If an ad is placed right in the middle and at the beginning, then it might attracts more people to click. We can value different positions to some number rank by their easiness to get access. The output is on S3: All Bucket/stat157-uq85def/home/clickpn/relative_pos/outputs/out1
 
 
 ### **Procedure**
@@ -61,17 +61,17 @@ stat157-uq85def/home/chenjiajunjerry/final_project/gender_age/outputs/out1
 The formula we used in this part is: Pr(click | feature = value)} = $\frac{Pr(click \ \delta feature==value)}{Pr(feature = value | click)+Pr(feature = value | nonclick)}$ 
 On top of that, we also did additive smoothing to our sample probability. If the click through rate for one feature value is zero, we will use the following formula: to make adjustment:
 
-\textbf{Adjustment Probability} = $\frac{Xi+ \alpha}{N + \alpha*d}$ (i=1,2...d),
+* Adjusted Probability = (Xi){N + d) (i=1,2...d)
 
 
-* In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.\\ 
+* In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.
 
 * In the end, we went through each single feature and tried out the combinations of these features to get the highest auc.
 
 
 
 ### **Results/AUC**
-* The training outcome(sample\_prob.txt) can be found at \url{s3://stat157-uq85def/home/jiangyuhao36/Submission}. And the detailed auc results(out.txt) can be found at \url{S3://stat157-uq85def/home/jiangyuhao36/Submission}. 
+* The training outcome(sample\_prob.txt) can be found at s3://stat157-uq85def/home/jiangyuhao36/Submission. And the detailed auc results(out.txt) can be found at S3://stat157-uq85def/home/jiangyuhao36/Submission 
 
 | Comb  | ADid | Similarity | Relative-Pos | Hist_CTR | Gender-Age | Depth-Pos | AUC |
 | ------------- | ------------- |------------- |------------- |------------- |------------- |------------- |------------- |
