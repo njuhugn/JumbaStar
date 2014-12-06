@@ -10,17 +10,17 @@ Instructions to train GLM
 *  Input file: output from above
 *  Output: output is in the format of ad_id \t position \t depth \t click \t impression
 
-## step3-identity mapper
+## Step3-identity mapper
 *  python file: mapper2.py
 *  Input file: output from above
 *  Output: output is in the format of ad_id \t position \t depth \t click \t impression
 
-## step4-aggreage all the instance with less than 20 impressions, assign them to "UNK"
+## Step4-aggreage all the instance with less than 20 impressions, assign them to "UNK"
 *  python file: reducer2.py
 *  Input file: output from above
 *  Output: output is in the format of ad_id \t position \t depth \t click \t impression
 
-## step5-use EC2 to run glm in R
+## Step5-use EC2 to run glm in R
 * R file: glm.R
 * Input file: output from the reducer above
 * Output: output is in the format of ad_id \t position \t depth \t click \t impression \t Probability of being clicked
