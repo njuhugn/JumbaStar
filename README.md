@@ -21,7 +21,7 @@
 * The data we used is from the KDD cup, held by Soso.com. To train our model, we used training-60.txt, which contained all the information for each instances and it was the main file we used in this project. We also used userid\_profile.txt, which contains the age and gender for each user ID. The last two files are queryid\_tokensid.txt and titleid\_tokensid, which had query ID, title ID and all the tokens ID. 
 
 
-# Model
+## Model
 --------
 
 ##	**Naive Bayes**
