@@ -58,10 +58,10 @@ stat157-uq85def/home/chenjiajunjerry/final_project/gender_age/outputs/out1
 
 ### **Procedure**
 * For this model, we first find the probability of feature equals value given clicked or not clicked. Then we use bayes rule to find our target value: Pr(Click | Data) 
-The formula we used in this part is: Pr(click | feature = value)} = $\frac{Pr(click \ \delta feature==value)}{Pr(feature = value | click)+Pr(feature = value | nonclick)}$ 
+The formula we used in this part is: Pr(click | feature = value)} = Pr(click \ \delta feature==value) / Pr(feature = value | click)+Pr(feature = value | nonclick)
 On top of that, we also did additive smoothing to our sample probability. If the click through rate for one feature value is zero, we will use the following formula: to make adjustment:
 
-\textbf{Adjustment Probability} = $\frac{Xi+ \alpha}{N + \alpha*d}$ (i=1,2...d),
+Adjustment Probability = (Xi+ alpha) /  (N + \alpha*d) (i=1,2...d),
 
 
 * In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.\\ 
