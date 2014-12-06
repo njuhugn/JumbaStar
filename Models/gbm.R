@@ -55,7 +55,7 @@ train$impressions <- NULL
 train_no_clicks <- NULL
 train$clicks <- NULL
 train$no_clicks <- NULL
-
+train <- subset(train, w  > 0)
 library(gbm)
 gbm.model2 <- gbm(y ~  ad_id + position + depth, n.trees= 10, weights=w, data=train, train.fraction=1.0)
 
