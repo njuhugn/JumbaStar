@@ -1,6 +1,6 @@
 # Stat 157 - Final Report
 =========
-##
+## Information
 * Author: Sida Ye, Victor Jiang, Jiajun Chen, Jiabin Chen
 * Date: 12/05/2014
 
@@ -26,15 +26,14 @@
 
 ##	**Naive Bayes**
 ###   **Description**
-*       Naive Bayes are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong independence assumptions between the features. 
+* Naive Bayes are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong independence assumptions between the features. 
 
-##  **Feature**
-Categorical feature: We used the categorical features adid, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique adid
+###  **Feature**
+* Categorical feature: We used the categorical features adid, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique adid
 
 
-\begin{itemize}
-  \item Categorical feature: \\
-We used the categorical features ad\_id, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique ad\_id, position and depth. After that, we combined all the instances for each feature with less than 20 impressions and called them “UNK” to represent the feature not shown up yet. The input data for our Naive Bayes models can be found in \url{S3://stat157-uq85def/home/chenjiajunjerry/final_project/data_aggregate2/output/out2}
+* Categorical feature:
+* We used the categorical features ad_id, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique ad_id, position and depth. After that, we combined all the instances for each feature with less than 20 impressions and called them “UNK” to represent the feature not shown up yet. The input data for our Naive Bayes models can be found in S3://stat157-uq85def/home/chenjiajunjerry/final_project/data_aggregate2/output/out2
 
 \smallskip
 
