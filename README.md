@@ -74,6 +74,15 @@ On top of that, we also did additive smoothing to our sample probability. If the
 ### **Results/AUC**
 * The training outcome(sample\_prob.txt) can be found at \url{s3://stat157-uq85def/home/jiangyuhao36/Submission}. And the detailed auc results(out.txt) can be found at \url{S3://stat157-uq85def/home/jiangyuhao36/Submission}. 
 
+| Comb  | ADid | Similarity | Relative-Pos | Hist_CTR | Gender-Age | Depth-Pos | AUC |
+| ------------- | ------------- |------------- |------------- |------------- |------------- |------------- |------------- |
+| No.1  |   |   |   |   |   |   |   |
+| No.1  |   |   |   |   |   |   |   |
+| No.1  |   |   |   |   |   |   |   |
+| No.1  |   |   |   |   |   |   |   |
+| No.1  |   |   |   |   |   |   |   |
+| No.1  |   |   |   |   |   |   |   |
+| No.1  |   |   |   |   |   |   |   |
 
 
 
