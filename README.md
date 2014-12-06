@@ -116,21 +116,28 @@ On top of that, we also did additive smoothing to our sample probability. If the
 
 ### **Features**
 * We only used categorical features ad-id, depth and position in our GLM. We extracted these three features along with the click and impression for each instance to create a data frame. Each column of this data frame corresponded to a different feature and the last two columns were impression and click. We then aggregated this data frame by the uniqueness of feature. The response variables are number of clicks and no-clicks. 
+
 ### **Procedure**
-* We did this process on EC2 due to the limitation of our own computers. The factor levels of categorical features had large influence on running the glm function in R. By referring to the lecture 24’s R demo code, we used the ReduceFactorLevel function to reduce the original numbers of ad-id’s levels into 20 levels. To further reduce the data size, we only kept the instance with less than 50 impressions. Then we connected local computer with EC2. In this case, we can get the result in a short time. 
+* We did this process on EC2 due to the limitation of our own computers. The factor levels of categorical features had large influence on running the glm function in R. By referring to the lecture 24’s R demo code, we used the ReduceFactorLevel function to reduce the original numbers of ad-id’s levels into 20 levels. To further reduce the data size, we only kept the instance with less than 50 impressions. Then we connected local computer with EC2. In this case, we can get the result in a short time.
+
 ### **Results/AUC**
 * The final AUC we achieved was 10.7\%, which was very low. We believed this is due to the fact that we reduced the ad_id feature to only 20 levels and we disregarded all the instance with more than 50 impressions in our regression model.
+
 ### **Limitation**
 * Due to the lack of memory, we can only apply glm function on ad_id with 20 different factor levels. Another limitation was that we only included three categorical features and omit other potential variables in our model. These two limitations lower the accuracy in prediction.
 
 
 ## **Boosting(GBM)**
+
 ### **Description**
 * The Gradient Boosting Model is a special case of the function gradient descent view of boosting, which is a decision-tree method that grows trees sequentially: each tree is grown using information from previously grown trees.
+
 ### **Features**
 * The features in GBM model was the same as those in GLM, which were ad\_id, depth and position.
+
 ### **Procedure**
 * To meet the requirement of input data format for the gbm function in R, we first transformed our train dataset into one with non-clicks. We assigned a new column called ‘y’ for each dataset. For original train dataset, we assigned ‘y’ as 1, while for no-click train dataset, we assigned ‘y’ to 0. Meanwhile, we named ‘w’ and assigned values as the weight for further use. We combined the original train dataset and the transformed train dataset together and subsetted with weight greater than 0. By implementing gbm function in gbm R package, we were able to get the results. Also, all these works were done on EC2.  
+
 ### **Results/AUC**
 * The final AUC is 50\%, which is not very satisfactory. 
 
