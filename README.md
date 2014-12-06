@@ -142,7 +142,7 @@ Due to the lack of memory, we can only apply glm function on ad\_id with 20 diff
 \subsubsection{Description}
 The Gradient Boosting Model is a special case of the function gradient descent view of boosting, which is a decision-tree method that grows trees sequentially: each tree is grown using information from previously grown trees.
 \subsubsection{Features}
-The features in GBM model is the same as those in GLM, which were ad\_id, depth and position.
+The features in GBM model was the same as those in GLM, which were ad\_id, depth and position.
 \subsubsection{Procedure}
 To meet the requirement of input data format for the gbm function in R, we first transformed our train dataset into one with non-clicks. We assigned a new column called ‘y’ for each dataset. For original train dataset, we assigned ‘y’ as 1, while for no-click train dataset, we assigned ‘y’ to 0. Meanwhile, we named ‘w’ and assigned values as the weight for further use. We combined the original train dataset and the transformed train dataset together and subsetted with weight greater than 0. By implementing gbm function in gbm R package, we were able to get the results. Also, all these works were done on EC2.  
 \subsubsection{Results/AUC}
@@ -150,7 +150,7 @@ The final AUC is 50\%, which is not very satisfactory.
 
 
 \subsubsection{Limitation}
-We believe the small factor level lower our accuracy in prediction. We can not reduce factor levels to 100 instead of 20 due to the lack of memory.
+We believed the small number factor levels lowered our accuracy in prediction. Due to the limited memory, we could only have 20 factor levels for ad\_id at maximum. 
 
 
 
@@ -164,7 +164,7 @@ We believe the small factor level lower our accuracy in prediction. We can not r
 The responsibilities  for each of the group member is the following:
 
 \begin{table}[h]\centering
-\large
+\small
 \begin{tabular}{| c | c |}
 \hline
 Responsibility & Person(s)\\
