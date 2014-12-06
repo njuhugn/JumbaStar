@@ -145,15 +145,8 @@ On top of that, we also did additive smoothing to our sample probability. If the
 * We believed the small number factor levels lowered our accuracy in prediction. Due to the limited memory, we could only have 20 factor levels for ad\_id at maximum. 
 
 
-
-
-
-
-
-
-\section{Responsibilities}
-
-The responsibilities  for each of the group member is the following:
+### **Responsibilities**
+*The responsibilities  for each of the group member is the following:
 
 \begin{table}[h]\centering
 \small
@@ -182,13 +175,10 @@ Write-up& Together\\
 
 
 
-\section{Conclusion}
-In this report, we specified the models we used and the features we selected in order to get the highest prediction accuracy thus AUC. Since the data sets are quite large, it took very long time to run the data. Among GLM and GBM, we had to reduce some features in order to get the results even in AWS. Therefore the prediction accuracies can be even higher if we did not have such restrictions. 
+## **Conclusion**
+* In this report, we specified the models we used and the features we selected in order to get the highest prediction accuracy thus AUC. Since the data sets are quite large, it took very long time to run the data. Among GLM and GBM, we had to reduce some features in order to get the results even in AWS. Therefore the prediction accuracies can be even higher if we did not have such restrictions. 
 
 
-\section{References}
-1. Wu, Kuan-wei; et al.\emph{``A Two-Stage Ensemble of Diverse Models for Advertisement Ranking in KDD Cup 2012."}:  2012. Web.\\
-2. Michael Jahrer; et al.\emph{``Ensemble of Collaborative Filtering and Feature Engineered Models for Click Through Rate Prediction."}:  2012. Web.\\
-
-
-\end{document}  
+## **References**
+* 1. Wu, Kuan-wei; et al.``A Two-Stage Ensemble of Diverse Models for Advertisement Ranking in KDD Cup 2012.":  2012. Web.
+* 2. Michael Jahrer; et al.``Ensemble of Collaborative Filtering and Feature Engineered Models for Click Through Rate Prediction.":  2012. Web.
