@@ -39,7 +39,7 @@ matchFactorLevels <- function(data, data_to_match, var) {
   as.factor(vec)
 }
 
-train$ad_id <- reduceFactorLevels(train, "ad_id", 50) # change the number of level
+train$ad_id <- reduceFactorLevels(train, "ad_id", 20) # change the number of level
 
 library(stats)
 model.glm <- glm(cbind(clicks, no_clicks) ~ ad_id + position + depth, family = binomial, data = train)
