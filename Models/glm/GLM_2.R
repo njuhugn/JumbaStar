@@ -1,5 +1,6 @@
 # author: Jiajun Chen, Sida Ye
 # R code to run glm 
+# Run the code on EC2
 
 """
 Input data frame format: ad_id, position, depth, impression, clicks, non-clicks
@@ -7,8 +8,8 @@ Then we are trying to run a logistic regression on this dataframe.
 """
 
 
-train  <- read.delim("/Volumes/JERRY/part.txt", header=FALSE)
-validation <- read.delim("/Volumes/JERRY/validation_input.txt", header=FALSE)
+train  <- read.delim("part.txt", header=FALSE)
+validation <- read.delim("validation_input.txt", header=FALSE)
 variables <- c("ad_id", "position", "depth", "impressions","clicks")
 names(train) <- variables # name valriables
 names(validation) <- variables
