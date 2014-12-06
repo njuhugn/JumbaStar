@@ -58,10 +58,10 @@ stat157-uq85def/home/chenjiajunjerry/final_project/gender_age/outputs/out1
 
 ### **Procedure**
 * For this model, we first find the probability of feature equals value given clicked or not clicked. Then we use bayes rule to find our target value: Pr(Click | Data) 
-The formula we used in this part is: Pr(click | feature = value)} = Pr(click \ \delta feature==value) / Pr(feature = value | click)+Pr(feature = value | nonclick)
+The formula we used in this part is: Pr(click | feature = value)} = $\frac{Pr(click \ \delta feature==value)}{Pr(feature = value | click)+Pr(feature = value | nonclick)}$ 
 On top of that, we also did additive smoothing to our sample probability. If the click through rate for one feature value is zero, we will use the following formula: to make adjustment:
 
-Adjustment Probability = (Xi+ alpha) /  (N + \alpha*d) (i=1,2...d),
+\textbf{Adjustment Probability} = $\frac{Xi+ \alpha}{N + \alpha*d}$ (i=1,2...d),
 
 
 * In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.\\ 
@@ -76,27 +76,12 @@ Adjustment Probability = (Xi+ alpha) /  (N + \alpha*d) (i=1,2...d),
 | Comb  | ADid | Similarity | Relative-Pos | Hist_CTR | Gender-Age | Depth-Pos | AUC |
 | ------------- | ------------- |------------- |------------- |------------- |------------- |------------- |------------- |
 | No.1  | X |   |   |   |   |   | 71.56% |
-| No.1  |   | X |   |   |   |   |  56.08% |
-| No.1  |   |   | X |   |   |   | 53.27% |
-| No.1  |   |   |   | X |   |   | 71.21% |
-| No.1  |   |   |   |   | X |   | 50.36% |
-| No.1  | X |   | X | X |   | X | 73.07% |
-| No.1  | X | X | X | X |   | X | 66.07% |
-
-
-
-\begin{center}
-  \begin{tabular}{ l | c | c | c | c | c | c || c }
-    \hline
-    Comb & ADid & Similarity & Relative-Pos & Historical CTR & Gender-Age & Depth-Pos & AUC \\ \hline
-    No.1 & X  &  & & & & & 71.56\% \\ \hline
-    No.2 &  &X  & & & & & 56.08\% \\ \hline
-    No.3 &  &  &X & & & & 53.27\%  \\ \hline
-    No.4 &  &  & &X & & & 71.21\% \\ \hline
-    No.5 &  &  & & & X & & 50.36\%  \\ \hline
-    No.6 &X  &  &X &X & &X & 73.07\% \\ \hline
-    No.7 &X  &X  &X &X & &X & 66.07\% \\
-    \hline
+| No.2  |   | X |   |   |   |   |  56.08% |
+| No.3  |   |   | X |   |   |   | 53.27% |
+| No.4  |   |   |   | X |   |   | 71.21% |
+| No.5  |   |   |   |   | X |   | 50.36% |
+| No.6  | X |   | X | X |   | X | 73.07% |
+| No.7  | X | X | X | X |   | X | 66.07% |
 
 
 ## **Limitation**
@@ -145,3 +130,4 @@ Adjustment Probability = (Xi+ alpha) /  (N + \alpha*d) (i=1,2...d),
 ## **References**
 * 1. Wu, Kuan-wei; et al.``A Two-Stage Ensemble of Diverse Models for Advertisement Ranking in KDD Cup 2012.":  2012. Web.
 * 2. Michael Jahrer; et al.``Ensemble of Collaborative Filtering and Feature Engineered Models for Click Through Rate Prediction.":  2012. Web.
+ 
