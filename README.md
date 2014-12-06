@@ -35,14 +35,11 @@
 * Categorical feature:
 * We used the categorical features ad_id, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique ad_id, position and depth. After that, we combined all the instances for each feature with less than 20 impressions and called them “UNK” to represent the feature not shown up yet. The input data for our Naive Bayes models can be found in S3://stat157-uq85def/home/chenjiajunjerry/final_project/data_aggregate2/output/out2
 
-\smallskip
+* Similarity feature:
+* We calculated the similarity between queryID token and titleID token. First, we use mapjoin in AWS  to combine querID_token file, titleID_token file and train dataset file together, making it as a large file.
+The output is on S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/out8
 
-  \item Similarity feature:\\
-We calculated the similarity between queryID token and titleID token. First, we use mapjoin in AWS  to combine querID\_token file, titleID\_token file and train dataset file together, making it as a large file.
-The output is on \url{S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/out8
-}
-\begin{enumerate}
-  \item 1-token similarity:\\
+** 1-token similarity:
 Based on the large file, we calculated the 1-token similarity by finding the same token in queryID\_token file and titleID\_token file. Then, we divided the number of same tokens by length of queryID\_token.
 The output is on \url{S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/out9}
   \item 2-token similarity:\\
