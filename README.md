@@ -39,10 +39,11 @@
 * We calculated the similarity between queryID token and titleID token. First, we use mapjoin in AWS  to combine querID_token file, titleID_token file and train dataset file together, making it as a large file.
 The output is on S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/out8
 
-* 1-token similarity:
+* **1-token similarity:**
 * Based on the large file, we calculated the 1-token similarity by finding the same token in queryID_token file and titleID_token file. Then, we divided the number of same tokens by length of queryID_token.
 The output is on S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/out9
-* 2-token similarity:
+
+* **2-token similarity:**
 * Based on the large file, we calculated the 2-token similarity by finding the number of two consecutive same tokens in titleID’s token and queryID’s token. Then, we divided the number of 2-token by the length of queryID_token.
 The output is on S3: All Bucket/stat157-uq85def/home/clickpn/smiliarity/outputs/2tokenout
 
@@ -58,12 +59,10 @@ stat157-uq85def/home/chenjiajunjerry/final_project/gender_age/outputs/out1
 ### **Procedure**
 * For this model, we first find the probability of feature equals value given clicked or not clicked. Then we use bayes rule to find our target value: Pr(Click | Data) 
 The formula we used in this part is: Pr(click | feature = value)} = $\frac{Pr(click \ \delta feature==value)}{Pr(feature = value | click)+Pr(feature = value | nonclick)}$ 
-On top of that, we also did additive smoothing to our sample probability. If the click through rate for one feature value is zero, we will use the following formula: to make adjustment:\\
+On top of that, we also did additive smoothing to our sample probability. If the click through rate for one feature value is zero, we will use the following formula: to make adjustment:
 
-\vspace*{-8pt}
 \textbf{Adjustment Probability} = $\frac{Xi+ \alpha}{N + \alpha*d}$ (i=1,2...d),
-\setlength{\parskip}{5 pt}
-\smallskip
+
 
 * In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.\\ 
 
@@ -98,20 +97,6 @@ On top of that, we also did additive smoothing to our sample probability. If the
     No.6 &X  &  &X &X & &X & 73.07\% \\ \hline
     No.7 &X  &X  &X &X & &X & 66.07\% \\
     \hline
-  \end{tabular}
-\end{center}
-
-\begin{center}
- \textbf{Best AUC we have }
-
-\end{center}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=90mm]{photo.jpg}
-\caption{A simple caption \label{overflow}}
-\end{figure}
-
 
 
 ## **Limitation**
@@ -152,37 +137,6 @@ On top of that, we also did additive smoothing to our sample probability. If the
 
 ### **Limitation**
 * We believed the small number factor levels lowered our accuracy in prediction. Due to the limited memory, we could only have 20 factor levels for ad\_id at maximum. 
-
-
-### **Responsibilities**
-*The responsibilities  for each of the group member is the following:
-
-\begin{table}[h]\centering
-\small
-\begin{tabular}{| c | c |}
-\hline
-Responsibility & Person(s)\\
-\hline
-Data Aggregation & Jiajun Chen, Sida Ye, Victor Jiang\\
-\hline
-Developing Features & Sida Ye, Jiajun Chen, Jiabin Chen\\
-\hline
-Naive Bayes Model & Victor Jiang\\
-\hline
-GLM & Sida Ye, Jiajun Chen\\
-\hline
-GBM-Boosting & Sida Ye, Jiajun Chen, Jiabin Chen\\
-\hline
-Calculating AUC & Victor Jiang\\
-\hline
-AWS \& Github & Sida Ye, Jiajun Chen, Victor Jiang\\
-\hline
-Write-up& Together\\
-\hline
-\end{tabular}\\
-\end{table}
-
-
 
 ## **Conclusion**
 * In this report, we specified the models we used and the features we selected in order to get the highest prediction accuracy thus AUC. Since the data sets are quite large, it took very long time to run the data. Among GLM and GBM, we had to reduce some features in order to get the results even in AWS. Therefore the prediction accuracies can be even higher if we did not have such restrictions. 
