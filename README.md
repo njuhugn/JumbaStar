@@ -24,7 +24,7 @@
 ## Model
 --------
 
-##	**Naive Bayes**
+###	**Naive Bayes**
 ###   **Description**
 * Naive Bayes are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong independence assumptions between the features. 
 
@@ -105,8 +105,8 @@ On top of that, we also did additive smoothing to our sample probability. If the
 
 
 
-\subsubsection{Limitation }
-In this model, we firstly assumed each feature is independent with each other while in reality, they are not. Therefore the prediction accuracy might not well reflect the model’s theoretical accuracy. The reason that our AUC for similarity is not high is we only calculated the similarity index between queryID and titleID. If we could calculate similarity index between queryID and AdID, which is a combination of titleID, keywordID and descriptionID, our AUC should be much higher than now.
+## **Limitation**
+* In this model, we firstly assumed each feature is independent with each other while in reality, they are not. Therefore the prediction accuracy might not well reflect the model’s theoretical accuracy. The reason that our AUC for similarity is not high is we only calculated the similarity index between queryID and titleID. If we could calculate similarity index between queryID and AdID, which is a combination of titleID, keywordID and descriptionID, our AUC should be much higher than now.
 
 
 
@@ -118,8 +118,8 @@ In this model, we firstly assumed each feature is independent with each other wh
 
 
 
-\subsection{GLM}
-\subsubsection{Description}
+## **GLM**
+### **Description**
 Besides Naive Bayes, we also used generalized linear model to predict click-through-rates. We assumed that the number of click and non-click for each combination of features follows a binomial distribution. We first aggregated the train data then ran it in R. 
 \subsubsection{Features}
 We only used categorical features ad-id, depth and position in our GLM. We extracted these three features along with the click and impression for each instance to create a data frame. Each column of this data frame corresponded to a different feature and the last two columns were impression and click. We then aggregated this data frame by the uniqueness of feature. The response variables are number of clicks and no-clicks. 
