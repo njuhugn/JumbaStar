@@ -1,0 +1,254 @@
+
+
+\documentclass[12pt]{article}
+
+\usepackage[top = 0.6 in, bottom = 0.5 in, left = 1 in,right = 1 in]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage[hyphens]{url}
+\usepackage{enumerate}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt plus 6pt minus 4pt}
+\setlength{\parskip}{0pt}
+\linespread{1}
+\usepackage{mdwlist}
+
+
+
+\title{\LARGE \bf  Stat 157 - Progress Report}
+\author{ JumbaStar\\
+\\ Sida Ye, Victor Jiang, Jiajun Chen, Jiabin Chen}
+\setlength{\parskip}{0pt}
+
+\date{12/5/2014}
+
+
+\begin{document}
+\maketitle
+\abstract{In this report, we report the process and the result we have for the KDD Cup 2012 click-through-rate (CTR) prediction of advertisements. To achieve that, we built our models on Naive Bayes, Generalized Linear Model and Gradient Boosting Model. We fitted each of the models with the best features that returned with the highest prediction accuracies. For this report, we present the results through each individual model we used.
+}
+
+
+\section{Problem Statement}
+\setlength{\parskip}{0 pt}
+The goal for this project is to predict click-through-rate and maximize the prediction accuracy. To achieve this goal, we need to aggregate various features and make different combinations of them. Then we apply three models -- Naive Bayes, GLM and Boosting on the training sets.Given the information about adID, queryID and user profile as training instance from session logs of the Tencent proprietary search engine, soso.com, we are expected to accurately predict the click-through rate (CTR) of ads in the testing instances as well as optimize the AUC value.
+
+
+
+\section{Introduction}
+\setlength{\parskip}{0 pt}
+Click-through-rate of advertisement is a major concern for nearly all search engines, major websites as well as internet companies. The accuracy of the prediction determines one company’s profit from advertisements and it directly affects the strategies for the companies to sell their available Ads. 
+\vspace*{-10pt}
+
+
+
+
+\section{Description of Database}
+\setlength{\parskip}{0 pt}
+The data we used is from the KDD cup, held by Soso.com. To train our model, we used training-60.txt, which contains all the information for each instances and it is the main file we used in this project. We also used userid-profile.txt, which contains the age and gender for each user ID. The last two files are queryid-tokensid.txt and titleid-tokensid, which have query ID, title ID and all the tokens ID. 
+
+
+
+
+\section{Model}
+\subsection{Naive Bayes}
+\subsubsection{Description}
+For this model, we first find the probability of feature equals value given clicked or not clicked. Then we use bayes rule to find our target value: Pr(Click | Data) 
+The formula we used in this part is:\\
+
+\vspace*{-10pt}
+\textbf{Pr(click \textbar\   feature = value)} = $\frac{Pr(click \ \delta feature==value)}{Pr(feature = value | click)+Pr(feature = value | nonclick)}$ 
+\setlength{\parskip}{5 pt}
+
+On top of that, we also did additive smoothing to our sample probability. If the click through rate for one feature value is zero, we will use the following formula: to make adjustment:\\
+
+\vspace*{-8pt}
+\textbf{Adjustment Probability} = $\frac{Xi+ \alpha}{N + \alpha*d}$ (i=1,2...d),
+\setlength{\parskip}{5 pt}
+
+In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.\\ 
+
+\vspace*{-8pt}
+In the end, we went through each single feature and tried out the combinations of these features to get the highest auc.
+\vspace*{-10pt}
+
+\subsubsection{Feature}
+\begin{enumerate}
+    \item Categorical feature: We used the categorical features adid, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique adid
+
+  \end{enumerate}%
+
+\begin{itemize}
+  \item Categorical feature: \\
+We used the categorical features adid, depth and position in our Naive Bayes  model. We aggregated click and impression for each unique adid, position and depth. After that, we combined all the instances for each feature with less than 20 impressions and called them “UNK” to represent the feature not shown up yet.
+
+  \item Similarity feature:\\
+We calculated the similarity between queryID token and titleID token. First, we use mapjoin in AWS  to combine querIDtoken file, titleIDtoken file and train dataset file together, making it as a large file.
+\begin{enumerate}
+  \item 1-token similarity:\\
+Based on the large file, we calculated the 1-token similarity by finding the same token in queryIDtoken file and titleIDtoken file. Then, we divided the number of same tokens by length of queryIDtoken.
+  \item 2-token similarity:\\
+Based on the large file, we calculated the 2-token similarity by finding the number of two consecutive same tokens in titleID’s token and queryID’s token. Then, we divided the number of 2-token by the length of queryIDtoken.
+\end{enumerate}
+  \item Gender and age:\\
+The age-gender feature is the 12 different groups, from cross between 2 gender groups and 6 age groups.
+  \item Relative position:\\
+We also used the relative position feature in our model. It is defined to be $\frac{(depth - pos)} { depth}$.
+\end{itemize}
+
+
+\subsubsection{Procedure}
+For this model, we first find the probability of feature equals value given clicked or not clicked. Then we use bayes rule to find our target value: Pr(Click | Data) 
+The formula we used in this part is:\\
+
+\vspace*{-10pt}
+\textbf{Pr(click \textbar\   feature = value)} = $\frac{Pr(click \ \delta feature==value)}{Pr(feature = value | click)+Pr(feature = value | nonclick)}$ 
+\setlength{\parskip}{5 pt}
+
+On top of that, we also did additive smoothing to our sample probability. If the click through rate for one feature value is zero, we will use the following formula: to make adjustment:\\
+
+\vspace*{-8pt}
+\textbf{Adjustment Probability} = $\frac{Xi+ \alpha}{N + \alpha*d}$ (i=1,2...d),
+\setlength{\parskip}{5 pt}
+
+In order to deal with values that are not in the training set but in the validation set, we aggregated all the entries with impressions less than 20 into one basket “UNK”. When running through the validation set, if we saw some id that is not in the training set, we would just use the probability represented by the UNK entry.\\ 
+
+\vspace*{-8pt}
+In the end, we went through each single feature and tried out the combinations of these features to get the highest auc.
+\vspace*{-10pt}
+
+
+\subsubsection{Results/AUC}
+
+\begin{center}
+  \begin{tabular}{ l | c | c | c | c | c | c || r }
+    \hline
+    Comb & ADid & Similarity & Relative-Pos & Historical CTR & Gender-Age & Depth-Pos & AUC \\ \hline
+    No.1 &  &  & & & & & \\ \hline
+    No.2 &  &  & & & & & \\ \hline
+    No.3 &  &  & & & & & \\ \hline
+    No.4 &  &  & & & & & \\ \hline
+    No.5 &  &  & & & & & \\ \hline
+    No.6 &  &  & & & & & \\ \hline
+    No.7 &  &  & & & & & \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+
+
+\subsubsection{Limitation }
+In this model, we firstly assumed each feature is independent with each other while in reality, they are not. Therefore the prediction accuracy might not well reflect the model’s theoretical accuracy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Features}
+The following are the features we are still developing:\\
+
+\vspace{0.4\baselineskip}
+
+
+
+\subsection{CTR Feature}
+For each categorical features, we calculate the average ctr. For example, we calculate the average ctr for all instances with the same AdID. We calculate this feature for AdID, AdvertiserID, depth, position. \\
+
+
+\subsection{Similarity Feature}
+
+For each AdID and QueryID, we calculate a similarity index for them. We need to find the tokens in queryid\_tokens and all AdID\_tokens in keywordID\_token file, titleID\_token file and descriptionID\_token files. 
+The similarity between a query and an advertisement is measured as the similarity of keywords between the query and the keyword, title and description. \\
+
+Calculation formula: \\
+Similarity\_Index = sum of (num of tokens in the query that are also in keyword, title, description / num of tokens in the query).\\
+
+Now I have the output of unique AdID and QueryID in each line. The output of this step is at All Buckets /stat157-uq85def/home/clickpn/similarity/outputs/out2. But I need further work on how to calculate the similarity by mapreduce in AWS.\\
+
+\section {Models}
+The models we have and will continue to use are the followings:\\
+\vspace{0.1\baselineskip}
+
+\subsection {Naive Bayes model (in Python)}
+Naive Bayes is a common probabilistic classification model based on Bayes? Rule. In this project, we plan to use at least 5 features in this model and further exam their interactions. As a first attempt, we use the ``AdID'', ``position'' and ``depth'' as the features in Naive Bayes. Basically, we followed the steps on github. We first calculate the probability of see each advertiser ID given it is clicked or not. \\
+
+$(Pr(feature = value \mid click) \& Pr(feature = value \mid noclick)$\\
+
+We group all ``AdID'' with impressions less than 20 as one single item and this item is used to represent the behaviour of those unknown advertiser ids in the test set. Next, we apply the bayes rule and get the probability of clicking based on ad?s features:\\
+
+The output of this step is at All Buckets /stat157-uq85def/home/jiangyuhao36/Project/Output/out3\\
+
+$Pr(Click \mid Data)$\\
+
+After getting a probabilistic classifier, we directly use values of the estimated conditional probability as the prediction criteria. Right now, we consider one ad is clicked as long as its click value is not zero. We are not sure if this is the legit way to define click, so we may try some other alternative methods. The output of this model is in the format of\\
+
+AdID  $\backslash$t `ad' $\backslash$t Pr(Click $\mid$ Data) $\backslash$t Clicks $\backslash$t Impressions\\
+
+
+
+
+\subsection{Decision Tree model (in R)}
+
+Tree decision can be used for regression and classification. It can segment feature space into a number of simple regions. First, we need to find which feature has the most influence on the response and we will choose this feature to split. Then we have to find the best value to split the feature. The pros of decision tree is that it is easy and useful to interpret. But this model is not so competitive with best models. Since it is hard to build decision tree in python, right now we build it in R first.  
+We plan to use ``ctr'' , ``position'' and ``depth'' in the decision tree model. First, we use the ``rpart'' library to apply the decision tree model with ``ctr''. The limitation of tree decision model in R is that the input file might be too large. So, now we plan to use GBM package which can accept aggregated data. \\
+
+
+
+\section{AUC}
+To test the accuracy of our model, we calculate the area under the curve. The validation set we are using are from the github folder. Then, we input all the data into R and use the auc package to get the results. The input file is the predicative rate and the actual results. The AUC we get from the Naive Bayes model is 58\%, which still has quite a lot of space to improve.\\
+
+Currently the AUC for our Naive Bayes is only 58\%, which is quite low. Next, we will try some other features and then we will choose the top 5 features and test how they interact with each other. For example, we still haven't use features such as ``gender'' , ``age\_group'' and ``relative position'' features. Also, we still have not added the smoothing parameter into our Naive Bayes model, so we plan to add a smoothing parameter into the model. Besides Naive Bayes and decision tree, we also plan to use Logistic regression model to predict a ad is clicked or not. We also have troubles on running mapreduce for similarity on AWS, so we need to adjust our code in order to run it successfully on AWS. We expected to get a AUC above 0.7 and the output files are on github.\\
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{photo.jpg}
+\caption{A simple caption \label{overflow}}
+\end{figure}
+
+
+
+\section{Responsibilities}
+
+The responsibilities  for each of the group member is the following:\\
+
+\begin{table}[h]
+\large
+\begin{tabular}{| c | c |}
+\hline
+Responsibility & Person(s)\\
+\hline
+Data Aggregation & Jiajun Chen, Sida Ye, Victor Jiang\\
+\hline
+Developing Features & Sida Ye, Jiajun Chen\\
+\hline
+Naive Bayes Model & Victor Jiang\\
+\hline
+GLM & Sida Ye, Jiajun Chen\\
+\hline
+GBM-Boosting & Sida Ye, Jiajun Chen\\
+\hline
+Calculating AUC & Victor Jiang\\
+\hline
+AWS \& Github & Sida Ye, Jiajun Chen, Victor Jiang\\
+\hline
+Write-up& Together\\
+\hline
+\end{tabular}\\
+\end{table}
+
+
+
+\end{document}  
