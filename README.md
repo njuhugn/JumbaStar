@@ -75,13 +75,13 @@ On top of that, we also did additive smoothing to our sample probability. If the
 
 | Comb  | ADid | Similarity | Relative-Pos | Hist_CTR | Gender-Age | Depth-Pos | AUC |
 | ------------- | ------------- |------------- |------------- |------------- |------------- |------------- |------------- |
-| No.1  |   |   |   |   |   |   |   |
-| No.1  |   |   |   |   |   |   |   |
-| No.1  |   |   |   |   |   |   |   |
-| No.1  |   |   |   |   |   |   |   |
-| No.1  |   |   |   |   |   |   |   |
-| No.1  |   |   |   |   |   |   |   |
-| No.1  |   |   |   |   |   |   |   |
+| No.1  | X |   |   |   |   |   | 71.56% |
+| No.1  |   | X |   |   |   |   |  56.08% |
+| No.1  |   |   | X |   |   |   | 53.27% |
+| No.1  |   |   |   | X |   |   | 71.21% |
+| No.1  |   |   |   |   | X |   | 50.36% |
+| No.1  | X |   | X | X |   | X | 73.07% |
+| No.1  | X | X | X | X |   | X | 66.07% |
 
 
 
